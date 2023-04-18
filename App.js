@@ -3,49 +3,49 @@ import Todo from './Todo';
 import AddTodo from './AddTodo';
 import { Paper, List, Container } from "@material-ui/core";
 import './App.css';
-
 class App extends React.Component {
-    constructor(props) { //∏≈∞≥∫Øºˆ props ª˝º∫¿⁄
-        super(props); // ∏≈∞≥∫Øºˆ pros √ ±‚»≠
-        this.state = { // item ø° item.id, item.title, item.done ∏≈∞≥∫Øºˆ ¿Ã∏ß∞˙ ∞™ «“¥Á
-            items: [{ id: "todo0", title: "Todo 1 ", done: true },
+    constructor(props) { //Îß§Í∞úÎ≥ÄÏàò props ÏÉùÏÑ±Ïûê
+        super(props); // Îß§Í∞úÎ≥ÄÏàò pros Ï¥àÍ∏∞Ìôî
+        this.state = { // item Ïóê item.id, item.title, item.done Îß§Í∞úÎ≥ÄÏàò Ïù¥Î¶ÑÍ≥º Í∞í Ìï†Îãπ
+            items: [
+                { id: "todo0", title: "Todo 1 ", done: true },
                 { id: "todo1", title: "Todo 2 ", done: false },
-                { id: "todo2", title: "Todo 3 ", done: false },
-                { id: "todo3", title: "Todo 4 ", done: false },
+                { id: "todo3", title: "Todo ÏàòÏ†ïÌïòÍ∏∞ 3 ", done: true },
                 { id: "todo4", title: "Todo 5 ", done: false },
-                { id: "todo5", title: "Todo 6 ", done: false },
-                { id: "todo6", title: "Todo 7 ", done: false },
             ],
         };
-    }
-
-    // (1) add «‘ºˆ √ﬂ∞°
+    } // add Ìï®Ïàò Ï∂îÍ∞Ä
     add = (item) => {
-        const thisItems = this.state.items; item.id = "ID-" + thisItems.length;//key∏¶ ¿ß«— id √ﬂ∞°
-        item.done = false; thisItems.push(item); this.setState({ items: thisItems });//update state
+        const thisItems = this.state.items;
+        item.id = "ID-" + thisItems.length;//keyÎ•º ÏúÑÌïú id Ï∂îÍ∞Ä
+        item.done = false; thisItems.push(item);
+        this.setState({ items: thisItems });//update state
         console.log("items:", this.state.items);
     }
-    render() {
-        // todoItemsø° this.state.items.length ∞° 0∫∏¥Ÿ ≈©¥Ÿ∏È true ¿Ãπ«∑Œ && µ⁄ø° ∞™¿ª ≥—∞‹¡ÿ¥Ÿ.
-        // totoItem = this.state.items.length > 0 ? (<Paper></Paper>):""; ¿Ã∑∏∞‘ «ÿµµ ∞∞¿∫ ∞·∞˙¿Ã¥Ÿ. ¡∂∞«º±≈√πÆ ? ternary operator
+    // delete Ìï®Ïàò Ï∂îÍ∞Ä. (alt+shift+f Ìè¨Îß∑ÌåÖ)
+    delete = (item) => {
+        const thisItems = this.state.items; const newItems = thisItems.filter(e => e.id !== item.id); this.setState({ items: newItems }, () => { //ÎîîÎ≤ÑÍπÖ ÏΩúÎ∞±
+            console.log("Update Items : ", this.state.items)
+        });
+    }
+    render() { // todoItemsÏóê this.state.items.length Í∞Ä 0Î≥¥Îã§ ÌÅ¨Îã§Î©¥ true Ïù¥ÎØÄÎ°ú && Îí§Ïóê Í∞íÏùÑ ÎÑòÍ≤®Ï§ÄÎã§. // totoItem = this.state.items.length > 0 ? (<Paper></Paper>):""; Ïù¥Î†áÍ≤å Ìï¥ÎèÑ Í∞ôÏùÄ Í≤∞Í≥ºÏù¥Îã§. Ï°∞Í±¥ÏÑ†ÌÉùÎ¨∏ ? ternary operator
         var todoItems = this.state.items.length > 0 && (
             <Paper style={{ margin: 16 }}>
                 <List>
                     {this.state.items.map((item, idx) => (
-                        <Todo item={item} key={item.id} />
+                        <Todo item={item} key={item.id} delete={this.delete} />
                     ))} </List>
             </Paper>
         );
-
-        // (2) add «‘ºˆ ø¨∞· 
+        // ÏÉùÏÑ±Îêú Ïª¥Ìè¨ÎÑåÌä∏ JSXÎ•º Î¶¨ÌÑ¥ÌïúÎã§. 
         return (
-            <div className="App">
-                <Container maxWidth="md">
-                    <AddTodo add={this.add} />
-                    <div className="TodoList">{todoItems}</div>
-                </Container>
-            </div>
-        );
+        <div className="App">
+            <Container maxWidth="md">
+                <AddTodo add={this.add} />
+                <div className="TodoList">{todoItems}</div>
+            </Container>
+        </div>
+    );
     }
 }
 export default App;
