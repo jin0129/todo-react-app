@@ -8,10 +8,9 @@ class App extends React.Component {
         super(props); // 매개변수 pros 초기화
         this.state = { // item 에 item.id, item.title, item.done 매개변수 이름과 값 할당
             items: [
-                { id: "todo0", title: "Todo 1 ", done: true },
-                { id: "todo1", title: "Todo 2 ", done: false },
-                { id: "todo3", title: "Todo 수정하기 3 ", done: true },
-                { id: "todo4", title: "Todo 5 ", done: false },
+                { id: "todo0", title: "오픈소스프로그래밍 ", done: false },
+                { id: "todo1", title: "학번 이름 작성 ", done: false },
+                { id: "todo3", title: "Roh Hyun Jin (1914248) ", done: false },
             ],
         };
     } // add 함수 추가
